@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fastlink Shipment - Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Fastlink Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" onclick="showTab('dashboard')">📊 Dashboard</a>
+                <a href="#shipments" class="nav-item" onclick="showTab('shipments')">📦 Manage Shipments</a>
+                <a href="#add-shipment" class="nav-item" onclick="showTab('add-shipment')">➕ Add New Shipment</a>
+                <a href="#analytics" class="nav-item" onclick="showTab('analytics')">📈 Analytics</a>
+                <a href="index.html" class="nav-item" style="background: #667eea; color: white;">← Back to Website</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <h1>Dashboard Overview</h1>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <h3>Total Shipments</h3>
+                        <p class="stat-number" id="totalShipments">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>In Transit</h3>
+                        <p class="stat-number" id="inTransit">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Delivered</h3>
+                        <p class="stat-number" id="delivered">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending</h3>
+                        <p class="stat-number" id="pending">0</p>
+                    </div>
+                </div>
+                <div class="recent-shipments">
+                    <h2>Recent Shipments</h2>
+                    <div id="recentList"></div>
+                </div>
+            </div>
+
+            <!-- Manage Shipments Tab -->
+            <div id="shipments" class="tab-content">
+                <h1>Manage Shipments</h1>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search by tracking number..." onkeyup="filterShipments()">
+                </div>
+                <div id="shipmentsList" class="shipments-list"></div>
+            </div>
+
+            <!-- Add Shipment Tab -->
+            <div id="add-shipment" class="tab-content">
+                <h1>Add New Shipment</h1>
+                <form class="add-shipment-form" onsubmit="addShipment(event)">
+                    <div class="form-group">
+                        <label>Tracking Number:</label>
+                        <input type="text" id="trackingNum" placeholder="e.g., SHIP20240001" required>
+                    </div>
+                    <div class="form-group">
+                        <label>From Location:</label>
+                        <input type="text" id="fromLocation" placeholder="e.g., New York, NY" required>
+                    </div>
+                    <div class="form-group">
+                        <label>To Location:</label>
+                        <input type="text" id="toLocation" placeholder="e.g., Los Angeles, CA" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Status:</label>
+                        <select id="status" required>
+                            <option>Pending</option>
+                            <option>In Transit</option>
+                            <option>Out for Delivery</option>
+                            <option>Delivered</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Current Location:</label>
+                        <input type="text" id="currentLocation" placeholder="e.g., Chicago Distribution Center" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Estimated Delivery:</label>
+                        <input type="date" id="estimatedDelivery" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Recipient Name:</label>
+                        <input type="text" id="recipientName" placeholder="e.g., John Doe" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Shipment</button>
+                </form>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div id="analytics" class="tab-content">
+                <h1>Analytics</h1>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Total Shipments This Month</h3>
+                        <p id="monthlyTotal">0</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Delivery Rate</h3>
+                        <p id="deliveryRate">0%</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Average Delivery Time</h3>
+                        <p id="avgDeliveryTime">0 days</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Total Revenue (Mock)</h3>
+                        <p id="totalRevenue">$0</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -14,7 +14,7 @@ function toggleServiceDetails(serviceId) {
     }
 }
 
-// Track shipment
+// Track shipment - pulls from admin dashboard data
 function trackShipment() {
     const trackingNumber = document.getElementById('trackingInput').value.trim();
     const resultDiv = document.getElementById('trackingResult');
@@ -25,49 +25,31 @@ function trackShipment() {
         return;
     }
 
-    // Mock tracking data
-    const mockTrackingData = {
-        'SHP123456789': {
-            status: 'In Transit',
-            location: 'Chicago Distribution Center',
-            estimatedDelivery: '2 days',
-            steps: [
-                { date: '2024-01-10', event: 'Package picked up', location: 'New York' },
-                { date: '2024-01-11', event: 'In transit', location: 'Pittsburgh' },
-                { date: '2024-01-12', event: 'At distribution center', location: 'Chicago' }
-            ]
-        },
-        'SHP987654321': {
-            status: 'Delivered',
-            location: 'Los Angeles, CA',
-            estimatedDelivery: 'Delivered',
-            steps: [
-                { date: '2024-01-08', event: 'Package picked up', location: 'Seattle' },
-                { date: '2024-01-09', event: 'In transit', location: 'Denver' },
-                { date: '2024-01-11', event: 'Delivered', location: 'Los Angeles' }
-            ]
-        }
-    };
+    // Get shipments from localStorage
+    const shipments = JSON.parse(localStorage.getItem('shipments') || '[]');
+    const shipment = shipments.find(s => s.trackingNumber === trackingNumber);
 
-    if (mockTrackingData[trackingNumber]) {
-        const data = mockTrackingData[trackingNumber];
+    if (shipment) {
         let html = `
-            <h3>Tracking Number: ${trackingNumber}</h3>
-            <p><strong>Status:</strong> ${data.status}</p>
-            <p><strong>Current Location:</strong> ${data.location}</p>
-            <p><strong>Estimated Delivery:</strong> ${data.estimatedDelivery}</p>
+            <h3>Tracking Number: ${shipment.trackingNumber}</h3>
+            <p><strong>Status:</strong> ${shipment.status}</p>
+            <p><strong>Current Location:</strong> ${shipment.currentLocation}</p>
+            <p><strong>Estimated Delivery:</strong> ${shipment.estimatedDelivery}</p>
+            <p><strong>Recipient:</strong> ${shipment.recipientName}</p>
             <hr style="margin: 1rem 0; border: none; border-top: 1px solid #ddd;">
             <h4>Shipment History:</h4>
             <ul style="list-style: none; text-align: left; display: inline-block;">
         `;
 
-        data.steps.forEach(step => {
-            html += `
-                <li style="margin: 0.5rem 0; padding: 0.5rem; border-left: 3px solid #667eea; padding-left: 1rem;">
-                    <strong>${step.date}</strong> - ${step.event} (${step.location})
-                </li>
-            `;
-        });
+        if (shipment.history && shipment.history.length > 0) {
+            shipment.history.forEach(step => {
+                html += `
+                    <li style="margin: 0.5rem 0; padding: 0.5rem; border-left: 3px solid #667eea; padding-left: 1rem;">
+                        <strong>${step.date}</strong> - ${step.event} (${step.location})
+                    </li>
+                `;
+            });
+        }
 
         html += '</ul>';
         resultDiv.innerHTML = html;
@@ -76,7 +58,7 @@ function trackShipment() {
         resultDiv.innerHTML = `
             <p>No shipment found with tracking number: <strong>${trackingNumber}</strong></p>
             <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
-                Try: SHP123456789 or SHP987654321
+                Check your tracking number or contact support at <strong>fastlinkshipment@yahoo.com</strong>
             </p>
         `;
         resultDiv.className = 'tracking-result info';
