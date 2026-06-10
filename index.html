@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fastlink Shipment - Professional Shipping Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Fastlink Shipment</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#track">Track</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Fast & Reliable Shipping Solutions</h1>
+            <p>Get your packages delivered on time, every time</p>
+            <button class="btn btn-primary" onclick="scrollToSection('contact')">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>📦 Standard Shipping</h3>
+                    <p>Reliable delivery within 5-7 business days for domestic shipments</p>
+                </div>
+                <div class="service-card">
+                    <h3>🚀 Express Shipping</h3>
+                    <p>Priority handling with 2-3 day delivery guarantee</p>
+                </div>
+                <div class="service-card">
+                    <h3>🌍 International Shipping</h3>
+                    <p>Worldwide delivery with customs clearance support</p>
+                </div>
+                <div class="service-card">
+                    <h3>📍 Local Pickup</h3>
+                    <p>Convenient local delivery options in your area</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Pricing Plans</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <p class="price">$9.99</p>
+                    <p class="subtitle">per shipment</p>
+                    <ul>
+                        <li>✓ Up to 5 lbs</li>
+                        <li>✓ Standard shipping</li>
+                        <li>✓ Tracking included</li>
+                    </ul>
+                    <button class="btn btn-secondary">Select Plan</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <p class="price">$19.99</p>
+                    <p class="subtitle">per shipment</p>
+                    <ul>
+                        <li>✓ Up to 25 lbs</li>
+                        <li>✓ Express shipping</li>
+                        <li>✓ Real-time tracking</li>
+                        <li>✓ Insurance included</li>
+                    </ul>
+                    <button class="btn btn-primary">Select Plan</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <p class="price">Custom</p>
+                    <p class="subtitle">bulk rates available</p>
+                    <ul>
+                        <li>✓ Unlimited weight</li>
+                        <li>✓ Priority support</li>
+                        <li>✓ Dedicated account manager</li>
+                        <li>✓ Volume discounts</li>
+                    </ul>
+                    <button class="btn btn-secondary">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracking Section -->
+    <section id="track" class="tracking">
+        <div class="container">
+            <h2>Track Your Shipment</h2>
+            <p>Enter your tracking number to monitor your delivery in real-time</p>
+            <div class="tracking-form">
+                <input type="text" id="trackingInput" placeholder="Enter tracking number (e.g., SHP123456789)">
+                <button class="btn btn-primary" onclick="trackShipment()">Track Now</button>
+            </div>
+            <div id="trackingResult" class="tracking-result"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <p>Have questions? Our support team is here to help</p>
+            <form class="contact-form" onsubmit="submitForm(event)">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+            <div class="contact-info">
+                <p><strong>📞 Phone:</strong> 1-800-FASTLINK</p>
+                <p><strong>✉️ Email:</strong> support@fastlinkshipment.com</p>
+                <p><strong>📍 Address:</strong> 456 Express Drive, Logistics Hub, TX 75001</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Fastlink Shipment. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#privacy">Privacy Policy</a></li>
+                <li><a href="#terms">Terms of Service</a></li>
+                <li><a href="#sitemap">Sitemap</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
