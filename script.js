@@ -14,14 +14,34 @@ function toggleServiceDetails(serviceId) {
     }
 }
 
+// Global map variable
+let map = null;
+let marker = null;
+
+// Location coordinates for major US cities (for demo)
+const cityCoordinates = {
+    'New York, NY': [40.7128, -74.0060],
+    'Los Angeles, CA': [34.0522, -118.2437],
+    'Chicago, IL': [41.8781, -87.6298],
+    'Pittsburgh, PA': [40.4406, -79.9959],
+    'Denver, CO': [39.7392, -104.9903],
+    'Seattle, WA': [47.6062, -122.3321],
+    'Miami, FL': [25.7617, -80.1918],
+    'Chicago Distribution Center': [41.8781, -87.6298],
+    'Los Angeles Distribution Center': [34.0522, -118.2437],
+    'Miami Distribution Center': [25.7617, -80.1918],
+};
+
 // Track shipment - pulls from admin dashboard data
 function trackShipment() {
     const trackingNumber = document.getElementById('trackingInput').value.trim();
     const resultDiv = document.getElementById('trackingResult');
+    const mapContainer = document.getElementById('mapContainer');
 
     if (!trackingNumber) {
         resultDiv.textContent = 'Please enter a tracking number.';
         resultDiv.className = 'tracking-result info';
+        mapContainer.style.display = 'none';
         return;
     }
 
@@ -54,14 +74,75 @@ function trackShipment() {
         html += '</ul>';
         resultDiv.innerHTML = html;
         resultDiv.className = 'tracking-result success';
+        
+        // Show and initialize map
+        mapContainer.style.display = 'block';
+        setTimeout(() => {
+            initializeMap(shipment);
+        }, 100);
     } else {
         resultDiv.innerHTML = `
             <p>No shipment found with tracking number: <strong>${trackingNumber}</strong></p>
             <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
-                Check your tracking number or contact support at <strong>fastlinkshipment@yahoo.com</strong>
+                Try: <strong>SHIP001</strong> or <strong>SHIP002</strong><br>
+                Or contact support at <strong>fastlinkshipment@yahoo.com</strong>
             </p>
         `;
         resultDiv.className = 'tracking-result info';
+        mapContainer.style.display = 'none';
+    }
+}
+
+// Initialize map with shipment location
+function initializeMap(shipment) {
+    const mapElement = document.getElementById('map');
+    
+    // Get coordinates for current location
+    const coords = cityCoordinates[shipment.currentLocation] || cityCoordinates['Chicago, IL'];
+    
+    // Remove existing map if present
+    if (map) {
+        map.remove();
+    }
+    
+    // Create new map
+    map = L.map('map').setView(coords, 6);
+    
+    // Add tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 19
+    }).addTo(map);
+    
+    // Add marker for current location
+    if (marker) {
+        map.removeLayer(marker);
+    }
+    
+    marker = L.marker(coords).addTo(map)
+        .bindPopup(`
+            <div style="text-align: center;">
+                <strong>${shipment.trackingNumber}</strong><br>
+                ${shipment.currentLocation}<br>
+                Status: ${shipment.status}
+            </div>
+        `)
+        .openPopup();
+    
+    // Add route markers if history exists
+    if (shipment.history && shipment.history.length > 1) {
+        shipment.history.forEach((step, index) => {
+            const stepCoords = cityCoordinates[step.location] || coords;
+            L.circleMarker(stepCoords, {
+                radius: 5,
+                fillColor: index === shipment.history.length - 1 ? '#667eea' : '#999',
+                color: '#667eea',
+                weight: 2,
+                opacity: 0.7,
+                fillOpacity: 0.7
+            }).addTo(map)
+            .bindPopup(`${step.event} - ${step.date}`);
+        });
     }
 }
 

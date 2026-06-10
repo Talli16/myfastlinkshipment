@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fastlink Shipment - Professional Shipping Solutions</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 </head>
 <body>
     <nav class="navbar">
@@ -141,10 +142,14 @@
             <h2>Track Your Shipment</h2>
             <p>Enter your tracking number to monitor your delivery in real-time</p>
             <div class="tracking-form">
-                <input type="text" id="trackingInput" placeholder="Enter tracking number (e.g., SHP123456789)">
+                <input type="text" id="trackingInput" placeholder="Enter tracking number (e.g., SHIP001)">
                 <button class="btn btn-primary" onclick="trackShipment()">Track Now</button>
             </div>
             <div id="trackingResult" class="tracking-result"></div>
+            <div id="mapContainer" class="map-container" style="display:none;">
+                <h3>Real-Time Location</h3>
+                <div id="map" class="map"></div>
+            </div>
         </div>
     </section>
 
@@ -181,5 +186,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </body>
 </html>
