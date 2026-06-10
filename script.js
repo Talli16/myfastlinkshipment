@@ -10,8 +10,20 @@ function scrollToSection(sectionId) {
 function toggleServiceDetails(serviceId) {
     const element = document.getElementById(serviceId);
     if (element) {
+        // Close all other service details
+        document.querySelectorAll('.service-details').forEach(el => {
+            if (el.id !== serviceId) {
+                el.style.display = 'none';
+            }
+        });
+        // Toggle current
         element.style.display = element.style.display === 'none' ? 'block' : 'none';
     }
+}
+
+// Select service and show payment options
+function selectService(serviceType) {
+    alert(`You selected ${serviceType} service. Coming soon: Full payment integration!`);
 }
 
 // Global map variable
