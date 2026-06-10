@@ -45,6 +45,9 @@ function trackShipment() {
         return;
     }
 
+    // Track analytics
+    trackTrackingQuery(trackingNumber);
+
     // Get shipments from localStorage
     const shipments = JSON.parse(localStorage.getItem('shipments') || '[]');
     const shipment = shipments.find(s => s.trackingNumber === trackingNumber);
@@ -155,6 +158,9 @@ function submitForm(event) {
     const email = form.querySelector('input[placeholder="Your Email"]').value;
     const subject = form.querySelector('input[placeholder="Subject"]').value;
     const message = form.querySelector('textarea').value;
+
+    // Track analytics
+    trackContactForm();
 
     // Mock form submission
     console.log('Form submitted:', { name, email, subject, message });

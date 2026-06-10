@@ -56,6 +56,8 @@ function showTab(tabName) {
         displayShipments();
     } else if (tabName === 'analytics') {
         updateAnalytics();
+    } else if (tabName === 'visitor-stats') {
+        updateVisitorAnalytics();
     }
 }
 
@@ -210,6 +212,36 @@ function updateAnalytics() {
     document.getElementById('deliveryRate').textContent = deliveryRate + '%';
     document.getElementById('avgDeliveryTime').textContent = '3-5 days';
     document.getElementById('totalRevenue').textContent = '$' + (shipments.length * 19.99).toFixed(2);
+}
+
+// Update visitor analytics
+function updateVisitorAnalytics() {
+    const analyticsData = JSON.parse(localStorage.getItem('analyticsData') || '{}');
+    
+    document.getElementById('totalVisitors').textContent = analyticsData.totalVisitors || 0;
+    document.getElementById('totalPageViews').textContent = analyticsData.pageViews || 0;
+    document.getElementById('totalTrackingQueries').textContent = analyticsData.trackingQueries || 0;
+    document.getElementById('contactSubmissions').textContent = analyticsData.contactFormSubmissions || 0;
+    
+    // Language stats
+    const langStats = document.getElementById('languageStats');
+    const languages = analyticsData.languages || {};
+    langStats.innerHTML = Object.entries(languages).map(([lang, count]) => 
+        `<p>🌐 ${lang.toUpperCase()}: <strong>${count}</strong> views</p>`
+    ).join('');
+    
+    // Top shipments
+    const topShipments = document.getElementById('topShipments');
+    const shipmentsTracked = analyticsData.shipmentsTracked || {};
+    const sorted = Object.entries(shipmentsTracked)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
+    
+    topShipments.innerHTML = sorted.length > 0
+        ? sorted.map(([shipment, count]) => 
+            `<p>📦 ${shipment}: <strong>${count}</strong> times tracked</p>`
+          ).join('')
+        : '<p>No tracking data yet</p>';
 }
 
 // Initialize on page load

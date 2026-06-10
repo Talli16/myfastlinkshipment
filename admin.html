@@ -18,6 +18,7 @@
                 <a href="#shipments" class="nav-item" onclick="showTab('shipments')">📦 Manage Shipments</a>
                 <a href="#add-shipment" class="nav-item" onclick="showTab('add-shipment')">➕ Add New Shipment</a>
                 <a href="#analytics" class="nav-item" onclick="showTab('analytics')">📈 Analytics</a>
+                <a href="#visitor-stats" class="nav-item" onclick="showTab('visitor-stats')">👥 Visitor Stats</a>
                 <a href="index.html" class="nav-item" style="background: #667eea; color: white;">← Back to Website</a>
             </nav>
         </aside>
@@ -121,6 +122,37 @@
                         <h3>Total Revenue (Mock)</h3>
                         <p id="totalRevenue">$0</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- Visitor Stats Tab -->
+            <div id="visitor-stats" class="tab-content">
+                <h1>Website Analytics</h1>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Total Visitors</h3>
+                        <p id="totalVisitors">0</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Total Page Views</h3>
+                        <p id="totalPageViews">0</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Tracking Queries</h3>
+                        <p id="totalTrackingQueries">0</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Contact Form Submissions</h3>
+                        <p id="contactSubmissions">0</p>
+                    </div>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 8px; margin-top: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <h3>Languages Used</h3>
+                    <div id="languageStats"></div>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 8px; margin-top: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <h3>Most Tracked Shipments</h3>
+                    <div id="topShipments"></div>
                 </div>
             </div>
         </main>
