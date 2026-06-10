@@ -215,58 +215,40 @@ function detectLanguage() {
     return translations[browserLang] ? browserLang : 'en';
 }
 
-// Set language
-function setLanguage(lang) {
-    localStorage.setItem('selectedLanguage', lang);
-    location.reload();
-}
-
-// Get current language
-function getCurrentLanguage() {
-    return localStorage.getItem('selectedLanguage') || detectLanguage();
-}
-
-// Translate text
-function t(key) {
+// Apply translations to page elements
+function applyTranslations() {
     const lang = getCurrentLanguage();
-    return (translations[lang] && translations[lang][key]) || (translations['en'] && translations['en'][key]) || key;
-}
-
-// Create language selector
-function createLanguageSelector() {
-    const selector = document.createElement('div');
-    selector.id = 'languageSelector';
-    selector.style.cssText = 'position: fixed; top: 80px; right: 20px; z-index: 1000; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 10px;';
+    const trans = translations[lang] || translations['en'];
     
-    const label = document.createElement('label');
-    label.textContent = 'Language: ';
-    label.style.marginRight = '10px';
-    
-    const select = document.createElement('select');
-    select.style.cssText = 'padding: 5px; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;';
-    select.onchange = (e) => setLanguage(e.target.value);
-    
-    languageList.forEach(lang => {
-        const option = document.createElement('option');
-        option.value = lang.code;
-        option.textContent = lang.name;
-        option.selected = getCurrentLanguage() === lang.code;
-        select.appendChild(option);
+    // Translate all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (trans[key]) {
+            element.textContent = trans[key];
+        }
     });
     
-    selector.appendChild(label);
-    selector.appendChild(select);
-    document.body.appendChild(selector);
+    // Update navbar links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        const href = link.getAttribute('href');
+        const key = href.substring(1); // remove # 
+        if (trans[key]) {
+            link.textContent = trans[key];
+        }
+    });
+    
+    // Update page direction for RTL languages
+    if (lang === 'ar') {
+        document.documentElement.lang = 'ar';
+        document.body.style.direction = 'rtl';
+    } else {
+        document.documentElement.lang = lang;
+        document.body.style.direction = 'ltr';
+    }
 }
 
-// Initialize translations on page load
-document.addEventListener('DOMContentLoaded', () => {
-    createLanguageSelector();
+// Set language and apply translations
+function setLanguage(lang) {
+    localStorage.setItem('selectedLanguage', lang);
     applyTranslations();
-});
-
-// Apply translations to page
-function applyTranslations() {
-    // This will be enhanced to translate actual page elements
-    console.log('Current language:', getCurrentLanguage());
 }

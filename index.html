@@ -14,11 +14,11 @@
         <div class="container">
             <div class="logo">Fastlink Shipment</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#track">Track</a></li>
-                <li><a href="#contact">Contact</a></li>
+               <li><a href="#home" data-i18n="home">Home</a></li>
+               <li><a href="#services" data-i18n="services">Services</a></li>
+               <li><a href="#pricing" data-i18n="pricing">Pricing</a></li>
+               <li><a href="#track" data-i18n="track">Track</a></li>
+               <li><a href="#contact" data-i18n="contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -26,16 +26,16 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <h1>Fast & Reliable Shipping Solutions</h1>
-            <p>Get your packages delivered on time, every time</p>
-            <button class="btn btn-primary" onclick="scrollToSection('contact')">Get Started</button>
+            <h1 data-i18n="heroTitle">Fast & Reliable Shipping Solutions</h1>
+            <p data-i18n="heroSubtitle">Get your packages delivered on time, every time</p>
+            <button class="btn btn-primary" onclick="scrollToSection('contact')" data-i18n="getStarted">Get Started</button>
         </div>
     </section>
 
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
-            <h2>Our Services</h2>
+            <h2 data-i18n="ourServices">Our Services</h2>
             <p style="text-align: center; color: #666; margin-bottom: 2rem;">Click on any service to view details</p>
             <div class="service-grid">
                 <div class="service-card" onclick="toggleServiceDetails('import')">
@@ -141,11 +141,11 @@
     <!-- Tracking Section -->
     <section id="track" class="tracking">
         <div class="container">
-            <h2>Track Your Shipment</h2>
-            <p>Enter your tracking number to monitor your delivery in real-time</p>
+            <h2 data-i18n="trackYourShipment">Track Your Shipment</h2>
+            <p data-i18n="enterTracking">Enter your tracking number to monitor your delivery in real-time</p>
             <div class="tracking-form">
                 <input type="text" id="trackingInput" placeholder="Enter tracking number (e.g., SHIP001)">
-                <button class="btn btn-primary" onclick="trackShipment()">Track Now</button>
+                <button class="btn btn-primary" onclick="trackShipment()" data-i18n="trackNow">Track Now</button>
             </div>
             <div id="trackingResult" class="tracking-result"></div>
             <div id="mapContainer" class="map-container" style="display:none;">
@@ -158,19 +158,19 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Get in Touch</h2>
-            <p>Have questions? Our support team is here to help</p>
+            <h2 data-i18n="getInTouch">Get in Touch</h2>
+            <p data-i18n="haveQuestions">Have questions? Our support team is here to help</p>
             <form class="contact-form" onsubmit="submitForm(event)">
                 <input type="text" placeholder="Your Name" required>
                 <input type="email" placeholder="Your Email" required>
                 <input type="text" placeholder="Subject" required>
                 <textarea placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit" class="btn btn-primary" data-i18n="sendMessage">Send Message</button>
             </form>
             <div class="contact-info">
-                <p><strong>📞 Phone:</strong> 1-800-FASTLINK</p>
-                <p><strong>✉️ Email:</strong> fastlinkshipment@yahoo.com</p>
-                <p><strong>📍 Address:</strong> 456 Express Drive, Logistics Hub, TX 75001</p>
+                <p><strong data-i18n="phone">Phone</strong>: 1-800-FASTLINK</p>
+                <p><strong data-i18n="email">Email</strong>: fastlinkshipment@yahoo.com</p>
+                <p><strong data-i18n="address">Address</strong>: 456 Express Drive, Logistics Hub, TX 75001</p>
             </div>
         </div>
     </section>
@@ -178,11 +178,11 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Fastlink Shipment. All rights reserved.</p>
+            <p>&copy; 2024 Fastlink Shipment. <span data-i18n="allRightsReserved">All rights reserved</span>.</p>
             <ul class="footer-links">
-                <li><a href="#privacy">Privacy Policy</a></li>
-                <li><a href="#terms">Terms of Service</a></li>
-                <li><a href="#sitemap">Sitemap</a></li>
+                <li><a href="#privacy" data-i18n="privacyPolicy">Privacy Policy</a></li>
+                <li><a href="#terms" data-i18n="termsOfService">Terms of Service</a></li>
+                <li><a href="#sitemap" data-i18n="sitemap">Sitemap</a></li>
             </ul>
         </div>
     </footer>
