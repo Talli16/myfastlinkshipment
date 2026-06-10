@@ -33,22 +33,59 @@
     <section id="services" class="services">
         <div class="container">
             <h2>Our Services</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">Click on any service to view details</p>
             <div class="service-grid">
-                <div class="service-card">
-                    <h3>📦 Standard Shipping</h3>
-                    <p>Reliable delivery within 5-7 business days for domestic shipments</p>
+                <div class="service-card" onclick="toggleServiceDetails('import')">
+                    <h3>📤 Import Services</h3>
+                    <p>Professional import solutions with customs clearance and documentation</p>
+                    <div class="service-details" id="import" style="display:none;">
+                        <hr style="margin: 1rem 0;">
+                        <ul style="text-align: left;">
+                            <li>✓ Customs clearance assistance</li>
+                            <li>✓ Import documentation handling</li>
+                            <li>✓ Door-to-door delivery</li>
+                            <li>✓ Real-time tracking</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" onclick="toggleServiceDetails('export')">
+                    <h3>📥 Export Services</h3>
+                    <p>Complete export solutions with proper handling and international compliance</p>
+                    <div class="service-details" id="export" style="display:none;">
+                        <hr style="margin: 1rem 0;">
+                        <ul style="text-align: left;">
+                            <li>✓ Export documentation preparation</li>
+                            <li>✓ International packaging</li>
+                            <li>✓ Shipping to 190+ countries</li>
+                            <li>✓ Insurance coverage available</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card" onclick="toggleServiceDetails('express')">
                     <h3>🚀 Express Shipping</h3>
                     <p>Priority handling with 2-3 day delivery guarantee</p>
+                    <div class="service-details" id="express" style="display:none;">
+                        <hr style="margin: 1rem 0;">
+                        <ul style="text-align: left;">
+                            <li>✓ 2-3 day delivery</li>
+                            <li>✓ Priority handling</li>
+                            <li>✓ Tracking updates every 4 hours</li>
+                            <li>✓ 24/7 customer support</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <h3>🌍 International Shipping</h3>
-                    <p>Worldwide delivery with customs clearance support</p>
-                </div>
-                <div class="service-card">
+                <div class="service-card" onclick="toggleServiceDetails('local')">
                     <h3>📍 Local Pickup</h3>
                     <p>Convenient local delivery options in your area</p>
+                    <div class="service-details" id="local" style="display:none;">
+                        <hr style="margin: 1rem 0;">
+                        <ul style="text-align: left;">
+                            <li>✓ Same-day pickup available</li>
+                            <li>✓ Multiple pickup locations</li>
+                            <li>✓ Discounted local rates</li>
+                            <li>✓ Flexible scheduling</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,7 +162,7 @@
             </form>
             <div class="contact-info">
                 <p><strong>📞 Phone:</strong> 1-800-FASTLINK</p>
-                <p><strong>✉️ Email:</strong> support@fastlinkshipment.com</p>
+                <p><strong>✉️ Email:</strong> fastlinkshipment@yahoo.com</p>
                 <p><strong>📍 Address:</strong> 456 Express Drive, Logistics Hub, TX 75001</p>
             </div>
         </div>

@@ -6,6 +6,14 @@ function scrollToSection(sectionId) {
     }
 }
 
+// Toggle service details
+function toggleServiceDetails(serviceId) {
+    const element = document.getElementById(serviceId);
+    if (element) {
+        element.style.display = element.style.display === 'none' ? 'block' : 'none';
+    }
+}
+
 // Track shipment
 function trackShipment() {
     const trackingNumber = document.getElementById('trackingInput').value.trim();

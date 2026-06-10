@@ -133,6 +133,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
 
 .service-card:hover {
@@ -149,6 +150,21 @@ body {
 .service-card p {
     color: #666;
     line-height: 1.8;
+}
+
+.service-details {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.service-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.service-details li {
+    padding: 0.5rem 0;
+    margin-left: 1rem;
 }
 
 /* Pricing Section */
