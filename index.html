@@ -6,20 +6,26 @@
     <title>Fastlink Shipment - Professional Shipping Solutions</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-    <script src="languages.js"></script>
     <script src="analytics.js"></script>
 </head>
 <body>
     <nav class="navbar">
-        <div class="container">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <div class="logo">Fastlink Shipment</div>
-            <ul class="nav-links">
-               <li><a href="#home" data-i18n="home">Home</a></li>
-               <li><a href="#services" data-i18n="services">Services</a></li>
-               <li><a href="#pricing" data-i18n="pricing">Pricing</a></li>
-               <li><a href="#track" data-i18n="track">Track</a></li>
-               <li><a href="#contact" data-i18n="contact">Contact</a></li>
-            </ul>
+            <div style="display: flex; gap: 2rem; align-items: center;">
+               <ul class="nav-links" style="margin: 0;">
+                   <li><a href="#home">Home</a></li>
+                   <li><a href="#services">Services</a></li>
+                   <li><a href="#pricing">Pricing</a></li>
+                   <li><a href="#track">Track</a></li>
+                   <li><a href="#contact">Contact</a></li>
+               </ul>
+               <div style="display: flex; gap: 0.5rem;">
+                   <button onclick="changeLang('en')" style="padding: 6px 12px; border: 1px solid white; background: transparent; color: white; cursor: pointer; border-radius: 4px; font-size: 12px;">EN</button>
+                   <button onclick="changeLang('es')" style="padding: 6px 12px; border: 1px solid white; background: transparent; color: white; cursor: pointer; border-radius: 4px; font-size: 12px;">ES</button>
+                   <button onclick="changeLang('fr')" style="padding: 6px 12px; border: 1px solid white; background: transparent; color: white; cursor: pointer; border-radius: 4px; font-size: 12px;">FR</button>
+               </div>
+            </div>
         </div>
     </nav>
 
@@ -38,7 +44,7 @@
             <h2 data-i18n="ourServices">Our Services</h2>
             <p style="text-align: center; color: #666; margin-bottom: 2rem;">Click on any service to view details</p>
             <div class="service-grid">
-                <div class="service-card" onclick="toggleServiceDetails('import')">
+                <div class="service-card" onclick="toggleServiceDetails('import')" style="cursor: pointer;">
                     <h3>📤 Import Services</h3>
                     <p>Professional import solutions with customs clearance and documentation</p>
                     <div class="service-details" id="import" style="display:none;">
@@ -48,10 +54,13 @@
                             <li>✓ Import documentation handling</li>
                             <li>✓ Door-to-door delivery</li>
                             <li>✓ Real-time tracking</li>
+                            <li>✓ Dedicated compliance officer</li>
+                            <li>✓ Tariff optimization</li>
                         </ul>
+                        <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="event.stopPropagation(); selectService('import')">Choose This Service</button>
                     </div>
                 </div>
-                <div class="service-card" onclick="toggleServiceDetails('export')">
+                <div class="service-card" onclick="toggleServiceDetails('export')" style="cursor: pointer;">
                     <h3>📥 Export Services</h3>
                     <p>Complete export solutions with proper handling and international compliance</p>
                     <div class="service-details" id="export" style="display:none;">
@@ -61,23 +70,29 @@
                             <li>✓ International packaging</li>
                             <li>✓ Shipping to 190+ countries</li>
                             <li>✓ Insurance coverage available</li>
+                            <li>✓ Export compliance consulting</li>
+                            <li>✓ Currency exchange assistance</li>
                         </ul>
+                        <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="event.stopPropagation(); selectService('export')">Choose This Service</button>
                     </div>
                 </div>
-                <div class="service-card" onclick="toggleServiceDetails('express')">
+                <div class="service-card" onclick="toggleServiceDetails('express')" style="cursor: pointer;">
                     <h3>🚀 Express Shipping</h3>
                     <p>Priority handling with 2-3 day delivery guarantee</p>
                     <div class="service-details" id="express" style="display:none;">
                         <hr style="margin: 1rem 0;">
                         <ul style="text-align: left;">
-                            <li>✓ 2-3 day delivery</li>
+                            <li>✓ 2-3 day delivery guarantee</li>
                             <li>✓ Priority handling</li>
-                            <li>✓ Tracking updates every 4 hours</li>
+                            <li>✓ Real-time tracking every 4 hours</li>
                             <li>✓ 24/7 customer support</li>
+                            <li>✓ Premium packaging</li>
+                            <li>✓ Climate-controlled transport</li>
                         </ul>
+                        <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="event.stopPropagation(); selectService('express')">Choose This Service</button>
                     </div>
                 </div>
-                <div class="service-card" onclick="toggleServiceDetails('local')">
+                <div class="service-card" onclick="toggleServiceDetails('local')" style="cursor: pointer;">
                     <h3>📍 Local Pickup</h3>
                     <p>Convenient local delivery options in your area</p>
                     <div class="service-details" id="local" style="display:none;">
@@ -87,7 +102,10 @@
                             <li>✓ Multiple pickup locations</li>
                             <li>✓ Discounted local rates</li>
                             <li>✓ Flexible scheduling</li>
+                            <li>✓ Customer service centers</li>
+                            <li>✓ White glove delivery option</li>
                         </ul>
+                        <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="event.stopPropagation(); selectService('local')">Choose This Service</button>
                     </div>
                 </div>
             </div>
@@ -189,5 +207,8 @@
 
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="translate.js"></script>
+    <script src="notifications.js"></script>
+    <script src="payments.js"></script>
 </body>
 </html>
